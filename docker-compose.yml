@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  postgis-db:
+    image: postgis/postgis:15-3.3
+    container_name: wandersecure-db --> TO BE UPDATED
+    environment:
+      POSTGRES_DB: wandersecure --> TO BE UPDATED
+      POSTGRES_USER: wandersecure_user --> TO BE UPDATED
+      POSTGRES_PASSWORD: secure_password_2025 --> TO BE UPDATED
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./databases/postgresql/data:/var/lib/postgresql/data --> TO BE UPDATED
+      - ./databases/postgresql/init:/docker-entrypoint-initdb.d --> TO BE UPDATED
+    networks:
+      - wandersecure-network --> TO BE UPDATED
+
+  redis:
+    image: redis:7-alpine
+    container_name: wandersecure-redis --> TO BE UPDATED
+    ports:
+      - "6379:6379"
+    networks:
+      - wandersecure-network --> TO BE UPDATED
+
+networks:
+  wandersecure-network:
+    driver: bridge --> TO BE UPDATED
